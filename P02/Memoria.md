@@ -9,13 +9,16 @@
 
 ![Texto alternativo](RecursosVisuales/1.gif)
 
+
+
 ---
 
 2. *Crea una escena simple en la que ubiques un plano y sobre él un cubo, una esfera y un cilindro. Cada uno de los objetos debe estar en un color diferente. En la consola cada objeto debe mostrar su nombre*
 
 ![Texto alternativo](RecursosVisuales/2.gif)
 
-He decidido añadir el *"Starter Asset de ThirdPerson"*. 
+Todos los que tengal el Tag de "FigurasMuestra" serán utilizadas
+para mostrar el nombre.
 
 ---
 
@@ -28,8 +31,9 @@ He decidido añadir el *"Starter Asset de ThirdPerson"*.
 
 ![Texto alternativo](RecursosVisuales/3.gif)
 
-El paquete de assets que he decidido añadir para importar un objeto de otro paquete ha sido *"Polytope Studio"*.
-Además una curiosidad con la que me puse a comprobar cosas fue la tecnología de LODs que es básicamente una tecnología para optimizar recursos principalmente, se basa en crear varios modelos con más detalle de calidad cada uno y así cuando estás lo suficiente lejos de un objeto renderizar el modelo que menor calidad tiene, ayudando al sistema a renderizar cosas de menor resolución.
+Se ha encapsulado cada cálculo en un método para poder ser utilizados en otra situación.
+
+Además a parte de mostrar el resultado por pantalla(Debugger) se muestra en el propio inspector.
 
 ---
 
@@ -37,25 +41,25 @@ Además una curiosidad con la que me puse a comprobar cosas fue la tecnología d
 
 ![Texto alternativo](RecursosVisuales/4.gif)
 
-Además de crear el terreno he trasteado con las opciones de pintado sobre el terreno.
+Simplemente se toma el transform del objeto donde está el script instanciado y se imprime la posición.
 
 ---
 
 5. *Crea un script para la esfera que muestre en consola la distancia a la que están el cubo y el cilindro.*
 
 ![Texto alternativo](RecursosVisuales/5.gif)
-He creado las etiquetas: 
-  + BasicObject3D
-  + Terrain
-  + ElementFromPolytopeStudio
-  + ObjectWithOnlyScript
+
+Para este ejercicio, he creado una variable que hay que rellenar desde el inspector, en la cual se solicitan los objetos a los que quieres calcular la distancia.
+
+Haciendo que sea más eficiente, ya que realizar un método como FindGameObjectsWithTag resulta más ineficiente ya que tiene que hacer busquedas sobre todos los objetos, a diferencia de tenerlo asociado directamente antes de ejecutar.
 
 ---
 
 6. *Selecciona tres posiciones en tu escena a través de un objeto invisible (marcador) que incluya 3 vectores numéricos para configurar posiciones en las que quieres ubicar los objetos en respuesta a pulsar la barra espaciadora. Estos vectores representan un desplazamiento respecto a la posición original del objeto. Crea un script que ubique en las posiciones configuradas cuando el usuario pulse la barra espaciadora.*
 
 ![Texto alternativo](RecursosVisuales/6.gif)
-He configurado la cámara y he asociado al script de la camara del player el objeto del player como tal para que lo siga, además modifiqué los parametros para que aparezca desde la perspectiva que se ve.
+
+Para este caso como hay que utilizar el GetAxis, he decidido crear un nuevo "Axis" que me permita calcular cuando se presiona el espacio.
 
 ---
 
@@ -63,7 +67,9 @@ He configurado la cámara y he asociado al script de la camara del player el obj
 
 ![Texto alternativo](RecursosVisuales/7.gif)
 
-o siga, además modifiqué los parametros para que aparezca desde la perspectiva que se ve.
+Este es un poco más enrevesado, aunque siento que es bastante eficiente. Realmente no estoy haciendo referencia al objeto que quiero cambiarle el color, le estoy haciendo referencia al script "ChangeColor" que tiene ese objeto (Si lo tiene), ya que ese tiene un método que me permite cambiarle el color aleatoriamente.
+Aprovechando el código y haciendo que sea más eficiente.
+Por eso, el método ChangeRandomColorComponent() lo puse como public, para poder ser accedido desde otros objetos. 
 
 ---
 
@@ -71,8 +77,11 @@ o siga, además modifiqué los parametros para que aparezca desde la perspectiva
 
 ![Texto alternativo](RecursosVisuales/8.gif)
 
-o siga, además modifiqué los parametros para que aparezca desde la perspectiva que se ve.
+Quizás el ejercicio más complejo, he hecho un método que me devuelve el objeto más lejano y más cercano respecto al objeto que tiene el script (en este caso el cubo). Por último, he realizado las comprobaciones concretas para ambos casos, para la esfera más cercana y la más lejana.
 
 ---
 
 ### Conclusión:
+Me ha dado curiosidad saber que el método FindGameObjectsWithTag no busca entre los objetos hijos.
+
+Pero de resto ha estado entretenido :)
